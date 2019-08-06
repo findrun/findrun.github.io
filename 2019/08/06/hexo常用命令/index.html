@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        hexo常用命令 - 追寻前路
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 人生就是一场修行，有人修得正果，有人苦海沉沦 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>pengjie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#init"><span class="toc-text">init</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generate"><span class="toc-text">generate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#publish"><span class="toc-text">publish</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#server"><span class="toc-text">server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deploy"><span class="toc-text">deploy</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 人生就是一场修行，有人修得正果，有人苦海沉沦 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        hexo常用命令
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-08-06 17:06:56</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#hexo" title="hexo">hexo</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content  indent ">
+        <h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init <span class="string">[folder]</span></span><br></pre></td></tr></table></figure>
+<p>新建一个网站，如果没有设置folder，Hexo默认在当前文件夹建立网站。</p>
+<h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> [layout] &lt;<span class="built_in">title</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>新建一篇文章。如果没有设置layout，默认使用_config.yml中的default_layout参数代替。如果标题包含空格的话，请使用双引号括起来。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="string">"post title"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">generate</span></span><br><span class="line">可简写为 hexo g</span><br></pre></td></tr></table></figure>
+<p>生成静态文件。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">选项</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-d，–deploy</td>
+<td style="text-align:center">文件生成后立即部署网站</td>
+</tr>
+<tr>
+<td style="text-align:center">-w，–watch</td>
+<td style="text-align:center">监视文件变动</td>
+</tr>
+</tbody>
+</table>
+<h2 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h2><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo publish <span class="string">[layout]</span> &lt;filename&gt;</span><br></pre></td></tr></table></figure>
+<p>发表草稿</p>
+<h2 id="server"><a href="#server" class="headerlink" title="server"></a>server</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">可简写为 hexo s</span><br></pre></td></tr></table></figure>
+<p>启动服务器。默认情况下访问地址为<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">选项</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-p，–port</td>
+<td style="text-align:center">重设端口</td>
+</tr>
+<tr>
+<td style="text-align:center">-s，–static</td>
+<td style="text-align:center">只使用静态文件</td>
+</tr>
+<tr>
+<td style="text-align:center">-l，–log</td>
+<td style="text-align:center">启动日记记录，使用覆盖记录格式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h2><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">deploy</span></span><br><span class="line">可简写为 hexo d</span><br></pre></td></tr></table></figure>
+<p>部署网站。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-g，–generate</td>
+<td style="text-align:center">部署之前预先生成静态文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>暂时用到的就这些，以后再添加。</strong></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://www.10000h.top">10000H</a></span>
+        <span>/</span>
+        
+        <span><a href="https://niexiaotao.com">Xiaotao&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>
