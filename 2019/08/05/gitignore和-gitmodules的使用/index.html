@@ -126,7 +126,7 @@
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#git进阶" title="git进阶">git进阶</a>
+        <a class="tag" href="/tags/#git" title="git">git</a>
         <span>/</span>
         
         
@@ -136,14 +136,10 @@
 </span>
     </div>
     <div class="post-content  indent ">
-        <h2 id="gitignore文件的使用"><a href="#gitignore文件的使用" class="headerlink" title=".gitignore文件的使用"></a>.gitignore文件的使用</h2><p>开发中常遇到不需要跟踪的文件或文件夹，包括不限于编译生成的文件(如.pyc)、调试结果(如rst文件夹)等,原则是不想让其被看到，此时可使用”.gitignore”文件进行管理。如下所示：</p>
-<p>开发中常遇到不需要跟踪的文件或文件夹，包括不限于编译生成的文件(如.pyc)、调试结果(如rst文件夹)等,原则是不想让其被看到，此时可使用”.gitignore”文件进行管理。如下所示：</p>
-<p>开发中常遇到不需要跟踪的文件或文件夹，包括不限于编译生成的文件(如.pyc)、调试结果(如rst文件夹)等,原则是不想让其被看到，此时可使用”.gitignore”文件进行管理。如下所示：</p>
-<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node_modules/</span><br><span class="line"><span class="meta">public</span>/</span><br><span class="line"><span class="meta">.deploy</span>*/</span><br></pre></td></tr></table></figure>
-<h2 id="gitignore文件的使用-1"><a href="#gitignore文件的使用-1" class="headerlink" title=".gitignore文件的使用"></a>.gitignore文件的使用</h2><p>从git官网上down了个开源代码，在此基础上开发出适合项目需求的程序，如果不想重复的上传别人的代码，此时需要将新添加的程序和改动的程序利用git保存，同时利用”.gitimodules”指明依赖的程序地址。如下所示：</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">submodule <span class="meta-string">"themes/aircloud"</span></span>]</span><br><span class="line">    path = themes/aircloud</span><br><span class="line">    url = https:<span class="comment">//github.com/aircloud/hexo-theme-aircloud</span></span><br></pre></td></tr></table></figure>
-<p>子模块使用时可通过以下命令拉取：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule <span class="keyword">update</span> <span class="comment">--init</span></span><br></pre></td></tr></table></figure>
+        <h2 id="gitignore文件的使用"><a href="#gitignore文件的使用" class="headerlink" title=".gitignore文件的使用"></a>.gitignore文件的使用</h2><p>开发中常遇到不需要跟踪的文件或文件夹，包括不限于编译生成的文件(如.pyc)、调试结果(如rst文件夹)等,原则是不想让其被看到，此时可使用”.gitignore”文件进行管理。如下所示：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node_modules/</span><br><span class="line"><span class="meta">public</span>/</span><br><span class="line"><span class="meta">.deploy</span>*/</span><br></pre></td></tr></table></figure></p>
+<h2 id="gitignore文件的使用-1"><a href="#gitignore文件的使用-1" class="headerlink" title=".gitignore文件的使用"></a>.gitignore文件的使用</h2><p>从git官网上down了个开源代码，在此基础上开发出适合项目需求的程序，如果不想重复的上传别人的代码，此时需要将新添加的程序和改动的程序利用git保存，同时利用”.gitimodules”指明依赖的程序地址。如下所示：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">submodule <span class="meta-string">"themes/aircloud"</span></span>]</span><br><span class="line">    path = themes/aircloud</span><br><span class="line">    url = https:<span class="comment">//github.com/aircloud/hexo-theme-aircloud</span></span><br></pre></td></tr></table></figure></p>
+<p>子模块使用时可通过以下命令拉取：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule <span class="keyword">update</span> <span class="comment">--init</span></span><br></pre></td></tr></table></figure></p>
+
         
         <br />
         <div id="comment-container">
@@ -226,12 +222,12 @@
             this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
 
-        (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://airclouds-blog.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
+        // (function() { // DON'T EDIT BELOW THIS LINE
+        //     var d = document, s = d.createElement('script');
+        //     s.src = 'https://airclouds-blog.disqus.com/embed.js';
+        //     s.setAttribute('data-timestamp', +new Date());
+        //     (d.head || d.body).appendChild(s);
+        // })();
     </script>
 
 

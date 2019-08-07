@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        git的安装和使用 - 追寻前路
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 人生就是一场修行，有人修得正果，有人苦海沉沦 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>pengjie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git的安装"><span class="toc-text">Git的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在Window上安装Git"><span class="toc-text">在Window上安装Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在Linux上安装Git"><span class="toc-text">在Linux上安装Git</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git的使用"><span class="toc-text">Git的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础操作"><span class="toc-text">基础操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工作区和暂存区的区别"><span class="toc-text">工作区和暂存区的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-init"><span class="toc-text">git init</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-add"><span class="toc-text">git add</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-commit"><span class="toc-text">git commit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-status"><span class="toc-text">git status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff"><span class="toc-text">git diff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-log"><span class="toc-text">git log</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset"><span class="toc-text">git reset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reflog"><span class="toc-text">git reflog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-checkout-–-filename"><span class="toc-text">git checkout – [filename]</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程仓库"><span class="toc-text">远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加远程库"><span class="toc-text">添加远程库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从远程库克隆"><span class="toc-text">从远程库克隆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push"><span class="toc-text">git push</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-Bash不能显示中文"><span class="toc-text">Git Bash不能显示中文</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 人生就是一场修行，有人修得正果，有人苦海沉沦 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        git的安装和使用
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-08-07 10:42:19</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#git" title="git">git</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content  indent ">
+        <h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><h2 id="在Window上安装Git"><a href="#在Window上安装Git" class="headerlink" title="在Window上安装Git"></a>在Window上安装Git</h2><p>在Windows上使用Git，可以从Git官网直接<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">下载安装程序</a>，（网速慢的同学请移步国内镜像），然后按默认选项安装即可。</p>
+<p>安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！</p>
+<h2 id="在Linux上安装Git"><a href="#在Linux上安装Git" class="headerlink" title="在Linux上安装Git"></a>在Linux上安装Git</h2><p>首先，你可以试着输入git，看看系统有没有安装Git：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git</span><br><span class="line">The program 'git' <span class="keyword">is</span> currently <span class="keyword">not</span> installed. You can install <span class="keyword">it</span> <span class="keyword">by</span> typing:</span><br><span class="line">sudo apt-<span class="keyword">get</span> install git</span><br></pre></td></tr></table></figure></p>
+<p>像上面的命令，有很多Linux会友好地告诉你Git没有安装，还会告诉你如何安装Git。</p>
+<p>如果你碰巧用Debian或Ubuntu Linux，通过一条sudo apt-get install git就可以直接完成Git的安装，非常简单。</p>
+<p>老一点的Debian或Ubuntu Linux，要把命令改为sudo apt-get install git-core，因为以前有个软件也叫GIT（GNU Interactive Tools），结果Git就只能叫git-core了。由于Git名气实在太大，后来就把GNU Interactive Tools改成gnuit，git-core正式改为git。</p>
+<p>如果是其他Linux版本，可以直接通过源码安装。先从<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git官网</a>下载源码，然后解压，依次输入：./config，make，sudo make install这几个命令安装就好了。</p>
+<h1 id="Git的使用"><a href="#Git的使用" class="headerlink" title="Git的使用"></a>Git的使用</h1><h2 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h2><h3 id="工作区和暂存区的区别"><a href="#工作区和暂存区的区别" class="headerlink" title="工作区和暂存区的区别"></a>工作区和暂存区的区别</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">工作区：就是你在电脑上看到的目录，比如目录下testgit里的文件<span class="comment">(.git隐藏目录版本库除外)</span>。或者以后需要再新建的目录文件等等都属于工作区范畴。</span><br><span class="line">版本库<span class="comment">(Repository)</span>：工作区有一个隐藏目录.git,这个不属于工作区，这是版本库。其中版本库里面存了很多东西，其中最重要的就是stage<span class="comment">(暂存区)</span>，还有Git为我们自动创建了第一个分支master,以及指向master的一个指针HEAD。</span><br></pre></td></tr></table></figure>
+<h3 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">创建版本库。版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被<span class="type">Git</span>管理起来，每个文件的修改、删除，<span class="type">Git</span>都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</span><br><span class="line">首先，选择一个合适的地方，创建一个空目录。</span><br><span class="line">第二步，通过git <span class="keyword">init</span>命令把这个目录变成<span class="type">Git</span>可以管理的仓库。</span><br></pre></td></tr></table></figure>
+<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">把文件添加到暂存区。</span><br></pre></td></tr></table></figure>
+<h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> commit -m <span class="string">"提交注释"</span></span><br><span class="line">提交更改，实际上就是把暂存区的所有内容提交到当前分支上。</span><br></pre></td></tr></table></figure>
+<h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看是否还有文件未提交。</span><br></pre></td></tr></table></figure>
+<h3 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看待提交文件中有什么修改。</span><br></pre></td></tr></table></figure>
+<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">显示从最近到最远的提交日志。</span><br></pre></td></tr></table></figure>
+<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">版本回退。</span><br><span class="line">回退到上一个版本：git <span class="keyword">reset</span> <span class="comment">--hard HEAD^</span></span><br><span class="line">回退到上上个版本：git <span class="keyword">reset</span> <span class="comment">--hard HEAD^^</span></span><br><span class="line">回退到前<span class="number">100</span>个版本：git <span class="keyword">reset</span> <span class="comment">--hard HEAD~100</span></span><br><span class="line">直接回退到某个版本，可用git reflog查看过往所有版本：git <span class="keyword">reset</span> <span class="comment">--hard 6fcfc89</span></span><br></pre></td></tr></table></figure>
+<h3 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看过往所有版本记录。</span><br></pre></td></tr></table></figure>
+<h3 id="git-checkout-–-filename"><a href="#git-checkout-–-filename" class="headerlink" title="git checkout – [filename]"></a>git checkout – [filename]</h3><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">放弃工作区的修改。</span></span><br><span class="line"><span class="comment">注意：命令git</span> <span class="comment">checkout</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">readme</span><span class="string">.</span><span class="comment">txt</span> <span class="comment">中的</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">很重要，如果没有</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">的话，那么命令变成创建分支了。</span></span><br></pre></td></tr></table></figure>
+<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">先有本地库，后有远程库的时候，如何关联远程库。</span><br><span class="line">可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。</span><br><span class="line">要关联一个远程库，使用命令：git remote <span class="keyword">add</span><span class="bash"> origin git@github.com:[Github账户名]/learngit.git</span></span><br></pre></td></tr></table></figure>
+<h3 id="从远程库克隆"><a href="#从远程库克隆" class="headerlink" title="从远程库克隆"></a>从远程库克隆</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">假设我们从零开发，那么最好的方式是先创建远程库，然后，从远程库克隆。</span><br><span class="line">远程库已经准备好了，下一步是用命令git clone克隆一个本地库：git <span class="keyword">clone</span> <span class="title">[giturl</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">把本地库的内容推送到远程，用git <span class="built_in">push</span>命令，实际上是把当前分支master推送到远程。</span><br><span class="line">git <span class="built_in">push</span> -u <span class="built_in">origin</span> master第一次推送master分支的所有内容</span><br><span class="line">此后，每次本地提交后，只要有必要，就可以使用命令git <span class="built_in">push</span> <span class="built_in">origin</span> master推送最新修改</span><br></pre></td></tr></table></figure>
+<h1 id="Git-Bash不能显示中文"><a href="#Git-Bash不能显示中文" class="headerlink" title="Git Bash不能显示中文"></a>Git Bash不能显示中文</h1><ul>
+<li>原因<br>在默认设置下，中文文件名在工作区状态输出，中文名不能正确显示，而是显示为八进制的字符编码。</li>
+<li>解决办法<br>git bash 终端输入命令：<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>--global core.quotepath <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>要注意的是，这样设置后，你的git bash终端也要设置成中文和utf-8编码，才能正确显示中文。</p>
+<p>在git bash的界面中右击空白处，弹出菜单，选择选项-&gt;文本-&gt;本地Locale，设置为zh_CN，而旁边的字符集选框选为UTF-8。</p>
+<p>英文显示则是： Options-&gt;Text-&gt;Locale改为zh_CN，Character set改为UTF-8</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://www.10000h.top">10000H</a></span>
+        <span>/</span>
+        
+        <span><a href="https://niexiaotao.com">Xiaotao&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        // (function() { // DON'T EDIT BELOW THIS LINE
+        //     var d = document, s = d.createElement('script');
+        //     s.src = 'https://airclouds-blog.disqus.com/embed.js';
+        //     s.setAttribute('data-timestamp', +new Date());
+        //     (d.head || d.body).appendChild(s);
+        // })();
+    </script>
+
+
+
+</html>
