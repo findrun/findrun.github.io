@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        mysql中日期相关操作 - 追寻前路
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 人生就是一场修行，有人修得正果，有人苦海沉沦 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>pengjie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串和日期相互转换"><span class="toc-text">字符串和日期相互转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql日期加减操作"><span class="toc-text">mysql日期加减操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql横向展示"><span class="toc-text">mysql横向展示</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 人生就是一场修行，有人修得正果，有人苦海沉沦 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        mysql中日期相关操作
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-08-09 10:01:02</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#mysql" title="mysql">mysql</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content  indent ">
+        <h2 id="字符串和日期相互转换"><a href="#字符串和日期相互转换" class="headerlink" title="字符串和日期相互转换"></a>字符串和日期相互转换</h2><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">字符串转时间：STR_TO_DATE('2017-08-29 00:00:00','%Y-%m-%d %H:%i:%s')</span><br><span class="line">时间转字符串：DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s')</span><br><span class="line">各符号代表的意义：</span><br><span class="line"><span class="tag">%<span class="selector-tag">W</span></span> 星期名字(Sunday……Saturday)</span><br><span class="line"><span class="tag">%<span class="selector-tag">D</span></span> 有英语前缀的月份的日期(1st, 2nd, 3rd, 等等。）  </span><br><span class="line"><span class="tag">%<span class="selector-tag">Y</span></span> 年, 数字, 4 位  </span><br><span class="line"><span class="tag">%<span class="selector-tag">y</span></span> 年, 数字, 2 位  </span><br><span class="line"><span class="tag">%<span class="selector-tag">a</span></span> 缩写的星期名字(Sun……Sat)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">d</span></span> 月份中的天数, 数字(00……31)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">e</span></span> 月份中的天数, 数字(0……31)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">m</span></span> 月, 数字(01……12)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">c</span></span> 月, 数字(1……12)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">b</span></span> 缩写的月份名字(Jan……Dec)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">j</span></span> 一年中的天数(001……366)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">H</span></span> 小时(00……23)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">k</span></span> 小时(0……23)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">h</span></span> 小时(01……12)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">I</span></span> 小时(01……12)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">l</span></span> 小时(1……12)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">i</span></span> 分钟, 数字(00……59)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">r</span></span> 时间,12 小时(hh:mm:ss [AP]M)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">T</span></span> 时间,24 小时(hh:mm:ss)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">S</span></span> 秒(00……59)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">s</span></span> 秒(00……59)  </span><br><span class="line"><span class="tag">%<span class="selector-tag">p</span></span> AM或PM  </span><br><span class="line"><span class="tag">%<span class="selector-tag">w</span></span> 一个星期中的天数(0=Sunday ……6=Saturday ）  </span><br><span class="line"><span class="tag">%<span class="selector-tag">U</span></span> 星期(0……52), 这里星期天是星期的第一天  </span><br><span class="line"><span class="tag">%<span class="selector-tag">u</span></span> 星期(0……52), 这里星期一是星期的第一天</span><br></pre></td></tr></table></figure>
+<h2 id="mysql日期加减操作"><a href="#mysql日期加减操作" class="headerlink" title="mysql日期加减操作"></a>mysql日期加减操作</h2><p>1.为日期增加一个时间间隔：DATE_ADD()。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> @dt = <span class="keyword">now</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">date_add</span>(@dt, <span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">day</span>);        <span class="comment">-- add 1 day</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">date_add</span>(@dt, <span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">hour</span>);       <span class="comment">-- add 1 hour</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">date_add</span>(@dt, <span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">minute</span>);     <span class="comment">-- ...</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">date_add</span>(@dt, <span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">second</span>);</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">date_add</span>(@dt, <span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">microsecond</span>);</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">date_add</span>(@dt, <span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">week</span>);</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">date_add</span>(@dt, <span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">month</span>);</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">date_add</span>(@dt, <span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">quarter</span>);</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">date_add</span>(@dt, <span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">year</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">date_add</span>(@dt, <span class="built_in">interval</span> <span class="number">-1</span> <span class="keyword">day</span>);       <span class="comment">-- sub 1 day</span></span><br></pre></td></tr></table></figure></p>
+<p>2.为日期减去一个时间间隔：DATE_SUB()，用法与DATE_ADD()一致。</p>
+<p>3.日期、时间相减函数：DATEDIFF(date1, date2)，TIMEDIFF(time1, time2)。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">DATEDIFF</span>(date1, date2)：两个日期相减<span class="selector-tag">date1-date2</span>，返回天数。</span><br><span class="line"><span class="selector-tag">TIMEDIFF</span>(time1, time2)：两个时间相减<span class="selector-tag">time1-time2</span>，返回<span class="selector-tag">time</span>差值。</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">select</span> <span class="selector-tag">timediff</span>(<span class="string">'2008-08-08 08:08:08'</span>, <span class="string">'2008-08-08 00:00:00'</span>); <span class="selector-tag">--</span> <span class="selector-tag">08</span><span class="selector-pseudo">:08</span><span class="selector-pseudo">:08</span></span><br><span class="line"><span class="selector-tag">select</span> <span class="selector-tag">timediff</span>(<span class="string">'08:08:08'</span>, <span class="string">'00:00:00'</span>);                       <span class="selector-tag">--</span> <span class="selector-tag">08</span><span class="selector-pseudo">:08</span><span class="selector-pseudo">:08</span></span><br><span class="line"></span><br><span class="line">注意：<span class="selector-tag">timediff</span>(time1,time2) 函数的两个参数类型必须相同。</span><br></pre></td></tr></table></figure></p>
+<h2 id="mysql横向展示"><a href="#mysql横向展示" class="headerlink" title="mysql横向展示"></a>mysql横向展示</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    stu_id,</span><br><span class="line">    <span class="keyword">SUM</span>(<span class="keyword">IF</span>(subject_id=<span class="number">1</span>,score,<span class="number">0</span>)) <span class="keyword">AS</span> <span class="string">'语文'</span>,</span><br><span class="line">    <span class="keyword">SUM</span>(<span class="keyword">IF</span>(subject_id=<span class="number">2</span>,score,<span class="number">0</span>)) <span class="keyword">AS</span> <span class="string">'数学'</span>,</span><br><span class="line">    <span class="keyword">SUM</span>(<span class="keyword">IF</span>(subject_id=<span class="number">3</span>,score,<span class="number">0</span>)) <span class="keyword">AS</span> <span class="string">'英语'</span></span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">    <span class="string">`t_score`</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> </span><br><span class="line">    stu_id</span><br></pre></td></tr></table></figure>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://13202121.github.io/">Code Mover</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        // (function() { // DON'T EDIT BELOW THIS LINE
+        //     var d = document, s = d.createElement('script');
+        //     s.src = 'https://airclouds-blog.disqus.com/embed.js';
+        //     s.setAttribute('data-timestamp', +new Date());
+        //     (d.head || d.body).appendChild(s);
+        // })();
+    </script>
+
+
+
+</html>
