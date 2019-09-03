@@ -9,7 +9,7 @@
 
     <title>
         
-        前端相关网站 - 追寻前路
+        nginx配置 - 追寻前路
         
     </title>
 
@@ -87,7 +87,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx的location、root、alias指令用法和区别"><span class="toc-text">nginx的location、root、alias指令用法和区别</span></a></li></ol>
 </div>
     
 </div>
@@ -118,15 +118,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        前端相关网站
+        nginx配置
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-08-08 10:16:56</span></span>
+        <span class="attr">发布于：<span>2019-08-13 11:23:38</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#工作" title="工作">工作</a>
+        <a class="tag" href="/tags/#nginx" title="nginx">nginx</a>
         <span>/</span>
         
         
@@ -136,15 +136,7 @@
 </span>
     </div>
     <div class="post-content  indent ">
-        <p>1.<a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener">Vue.js</a> — <a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener">https://cn.vuejs.org/v2/api/</a></p>
-<p>2.<a href="https://element.eleme.cn/#/zh-CN/component/message-box" target="_blank" rel="noopener">ElementUI</a> — <a href="https://element.eleme.cn/#/zh-CN/component/message-box" target="_blank" rel="noopener">https://element.eleme.cn/#/zh-CN/component/message-box</a></p>
-<p>3.<a href="https://www.bootcss.com/" target="_blank" rel="noopener">Bootstrap</a> — <a href="https://www.bootcss.com/" target="_blank" rel="noopener">https://www.bootcss.com/</a></p>
-<p>4.<a href="https://echarts.baidu.com/" target="_blank" rel="noopener">Echarts图表设计</a> — <a href="https://echarts.baidu.com/" target="_blank" rel="noopener">https://echarts.baidu.com/</a></p>
-<p>5.<a href="https://www.layui.com/" target="_blank" rel="noopener">Layui</a> — <a href="https://www.layui.com/" target="_blank" rel="noopener">https://www.layui.com/</a></p>
-<p>6.<a href="https://www.processon.com/" target="_blank" rel="noopener">ProcessOn在线绘图</a> — <a href="https://www.processon.com/" target="_blank" rel="noopener">https://www.processon.com/</a></p>
-<p>7.<a href="http://www.axureux.com/home/default.html" target="_blank" rel="noopener">AxureUX.com交互原型设计</a> — <a href="http://www.axureux.com/home/default.html" target="_blank" rel="noopener">http://www.axureux.com/home/default.html</a></p>
-<p>8.<a href="https://www.fusioncharts.com/" target="_blank" rel="noopener">FusionCharts图表设计</a> — <a href="https://www.fusioncharts.com/" target="_blank" rel="noopener">https://www.fusioncharts.com/</a></p>
-
+        <h2 id="nginx的location、root、alias指令用法和区别"><a href="#nginx的location、root、alias指令用法和区别" class="headerlink" title="nginx的location、root、alias指令用法和区别"></a>nginx的location、root、alias指令用法和区别</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root与<span class="built_in">alias</span>主要区别在于nginx如何解释location后面的uri，这会使两者分别以不同的方式将请求映射到服务器文件上。</span><br><span class="line">root的处理结果是：root路径＋location路径。</span><br><span class="line"><span class="built_in">alias</span>的处理结果是：使用<span class="built_in">alias</span>路径替换location路径。</span><br><span class="line"><span class="built_in">alias</span>是一个目录别名的定义，root则是最上层目录的定义。</span><br></pre></td></tr></table></figure>
         
         <br />
         <div id="comment-container">
@@ -205,7 +197,8 @@
     window.hexo_root = "/"
     window.isPost = true
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="/js/jquery-1.11.3.min.js"></script>
 <script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
