@@ -135,7 +135,7 @@
 </span>
 </span>
     </div>
-    <div class="post-content  indent ">
+    <div class="post-content no-indent">
         <h2 id="nginx的location、root、alias指令用法和区别"><a href="#nginx的location、root、alias指令用法和区别" class="headerlink" title="nginx的location、root、alias指令用法和区别"></a>nginx的location、root、alias指令用法和区别</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root与<span class="built_in">alias</span>主要区别在于nginx如何解释location后面的uri，这会使两者分别以不同的方式将请求映射到服务器文件上。</span><br><span class="line">root的处理结果是：root路径＋location路径。</span><br><span class="line"><span class="built_in">alias</span>的处理结果是：使用<span class="built_in">alias</span>路径替换location路径。</span><br><span class="line"><span class="built_in">alias</span>是一个目录别名的定义，root则是最上层目录的定义。</span><br></pre></td></tr></table></figure>
         
         <br />

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        keytool生成证书 - 追寻前路
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 大道至简,大医至爱,适者有寿,仁者无敌 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>pengjie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、keytool的概念"><span class="toc-text">一、keytool的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、创建证书"><span class="toc-text">二、创建证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、查看密钥库里面的证书"><span class="toc-text">三、查看密钥库里面的证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、导出到证书文件"><span class="toc-text">四、导出到证书文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、导入证书"><span class="toc-text">五、导入证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、查看证书信息"><span class="toc-text">六、查看证书信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、删除密钥库中的条目"><span class="toc-text">七、删除密钥库中的条目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、修改证书条目的口令"><span class="toc-text">八、修改证书条目的口令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九、摘自"><span class="toc-text">九、摘自</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 大道至简,大医至爱,适者有寿,仁者无敌 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        keytool生成证书
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-09-29 10:53:33</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#java" title="java">java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="一、keytool的概念"><a href="#一、keytool的概念" class="headerlink" title="一、keytool的概念"></a>一、keytool的概念</h2><p>keytool 是个密钥和证书管理工具。它使用户能够管理自己的公钥/私钥对及相关证书，用于（通过数字签名）自我认证（用户向别的用户/服务认证自己）或数据完整性以及认证服务。在JDK 1.4以后的版本中都包含了这一工具，它的位置为%JAVA_HOME%\bin\keytool.exe，如下图所示：<br><img src="01.png" alt="图片无法显示"><br><img src="02.png" alt="图片无法显示"></p>
+<h2 id="二、创建证书"><a href="#二、创建证书" class="headerlink" title="二、创建证书"></a>二、创建证书</h2><p>创建证书主要是使用” -genkeypair”，该命令的可用参数如下：<br><img src="03.png" alt="图片无法显示"><br>范例：生成一个名称为test1的证书<br>Cmd代码：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkeypair -<span class="built_in">alias</span> <span class="string">"test1"</span> -keyalg <span class="string">"RSA"</span> -keystore <span class="string">"test.keystore"</span></span><br></pre></td></tr></table></figure></p>
+<p>功能：<br>创建一个别名为test1的证书，该证书存放在名为test.keystore的密钥库中，若test.keystore密钥库不存在则创建。<br>参数说明：<br>-genkeypair：生成一对非对称密钥;<br>-alias：指定密钥对的别名，该别名是公开的;<br>-keyalg：指定加密算法，本例中的采用通用的RAS加密算法;<br>-keystore:密钥库的路径及名称，不指定的话，默认在操作系统的用户目录下生成一个”.keystore”的文件<br><img src="04.png" alt="图片无法显示"><br>注意：<br>　　<font color="red">1.密钥库的密码至少必须6个字符，可以是纯数字或者字母或者数字和字母的组合等等<br>　　2.”名字与姓氏”应该是输入域名，而不是我们的个人姓名，其他的可以不填</font><br>执行完上述命令后，在操作系统的用户目录下生成了一个”test.keystore”的文件，如下图所示：<br><img src="05.png" alt="图片无法显示"></p>
+<h2 id="三、查看密钥库里面的证书"><a href="#三、查看密钥库里面的证书" class="headerlink" title="三、查看密钥库里面的证书"></a>三、查看密钥库里面的证书</h2><p>范例：查看test.keystore这个密钥库里面的所有证书<br>Cmd代码：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -<span class="keyword">list</span> -keystore <span class="keyword">test</span>.keystore</span><br></pre></td></tr></table></figure></p>
+<p><img src="06.png" alt="图片无法显示"></p>
+<h2 id="四、导出到证书文件"><a href="#四、导出到证书文件" class="headerlink" title="四、导出到证书文件"></a>四、导出到证书文件</h2><p>范例：将名为test.keystore的证书库中别名为test1的证书条目导出到证书文件test.crt中<br>Cmd代码：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -<span class="keyword">export</span> -alias test1 -<span class="keyword">file</span> <span class="keyword">test</span>.crt -keystore <span class="keyword">test</span>.keystore</span><br></pre></td></tr></table></figure></p>
+<p><img src="07.png" alt="图片无法显示"><br>运行结果：在操作系统的用户目录(gacl)下生成了一个”test.crt”的文件，如下图所示：<br><img src="08.png" alt="图片无法显示"></p>
+<h2 id="五、导入证书"><a href="#五、导入证书" class="headerlink" title="五、导入证书"></a>五、导入证书</h2><p>范例：将证书文件test.crt导入到名为test_cacerts的证书库中<br>Cmd代码：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -import -keystore test_cacerts -<span class="keyword">file</span> <span class="keyword">test</span>.crt</span><br></pre></td></tr></table></figure></p>
+<p><img src="09.png" alt="图片无法显示"></p>
+<h2 id="六、查看证书信息"><a href="#六、查看证书信息" class="headerlink" title="六、查看证书信息"></a>六、查看证书信息</h2><p>范例：查看证书文件test.crt的信息<br>Cmd代码：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -printcert -<span class="built_in">file</span> <span class="string">"test.crt"</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="10.png" alt="图片无法显示"></p>
+<h2 id="七、删除密钥库中的条目"><a href="#七、删除密钥库中的条目" class="headerlink" title="七、删除密钥库中的条目"></a>七、删除密钥库中的条目</h2><p>范例：删除密钥库test.keystore中别名为test1的证书条目<br>Cmd代码：<br><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -<span class="keyword">delete</span> -keystore test.keystore -<span class="keyword">alias</span> test1</span><br></pre></td></tr></table></figure></p>
+<p><img src="11.png" alt="图片无法显示"></p>
+<h2 id="八、修改证书条目的口令"><a href="#八、修改证书条目的口令" class="headerlink" title="八、修改证书条目的口令"></a>八、修改证书条目的口令</h2><p>范例：将密钥库test.keystore中别名为test2的证书条目的密码修改为xdp123456<br>Cmd代码：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -keypasswd -<span class="built_in">alias</span> test2 -keystore test.keystore</span><br></pre></td></tr></table></figure></p>
+<p><img src="12.png" alt="图片无法显示"></p>
+<h2 id="九、摘自"><a href="#九、摘自" class="headerlink" title="九、摘自"></a>九、摘自</h2><p><a href="https://www.cnblogs.com/xdp-gacl/p/3750965.html" target="_blank" rel="noopener">孤傲苍狼</a> — <a href="https://www.cnblogs.com/xdp-gacl/p/3750965.html" target="_blank" rel="noopener">https://www.cnblogs.com/xdp-gacl/p/3750965.html</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" href="https://13202121.github.io/">Code Mover</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        // (function() { // DON'T EDIT BELOW THIS LINE
+        //     var d = document, s = d.createElement('script');
+        //     s.src = 'https://airclouds-blog.disqus.com/embed.js';
+        //     s.setAttribute('data-timestamp', +new Date());
+        //     (d.head || d.body).appendChild(s);
+        // })();
+    </script>
+
+
+
+</html>
