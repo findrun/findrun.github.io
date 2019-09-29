@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
@@ -144,7 +144,7 @@
 <p>老一点的Debian或Ubuntu Linux，要把命令改为sudo apt-get install git-core，因为以前有个软件也叫GIT（GNU Interactive Tools），结果Git就只能叫git-core了。由于Git名气实在太大，后来就把GNU Interactive Tools改成gnuit，git-core正式改为git。</p>
 <p>如果是其他Linux版本，可以直接通过源码安装。先从<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git官网</a>下载源码，然后解压，依次输入：./config，make，sudo make install这几个命令安装就好了。</p>
 <h1 id="Git的使用"><a href="#Git的使用" class="headerlink" title="Git的使用"></a>Git的使用</h1><h2 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h2><h3 id="工作区和暂存区的区别"><a href="#工作区和暂存区的区别" class="headerlink" title="工作区和暂存区的区别"></a>工作区和暂存区的区别</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">工作区：就是你在电脑上看到的目录，比如目录下testgit里的文件<span class="comment">(.git隐藏目录版本库除外)</span>。或者以后需要再新建的目录文件等等都属于工作区范畴。</span><br><span class="line">版本库<span class="comment">(Repository)</span>：工作区有一个隐藏目录.git,这个不属于工作区，这是版本库。其中版本库里面存了很多东西，其中最重要的就是stage<span class="comment">(暂存区)</span>，还有Git为我们自动创建了第一个分支master,以及指向master的一个指针HEAD。</span><br></pre></td></tr></table></figure>
-<h3 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">创建版本库。版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被<span class="type">Git</span>管理起来，每个文件的修改、删除，<span class="type">Git</span>都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</span><br><span class="line">首先，选择一个合适的地方，创建一个空目录。</span><br><span class="line">第二步，通过git <span class="keyword">init</span>命令把这个目录变成<span class="type">Git</span>可以管理的仓库。</span><br></pre></td></tr></table></figure>
+<h3 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">创建版本库。版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</span><br><span class="line">首先，选择一个合适的地方，创建一个空目录。</span><br><span class="line">第二步，通过git <span class="keyword">init</span>命令把这个目录变成Git可以管理的仓库。</span><br></pre></td></tr></table></figure>
 <h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">把文件添加到暂存区。</span><br></pre></td></tr></table></figure>
 <h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> commit -m <span class="string">"提交注释"</span></span><br><span class="line">提交更改，实际上就是把暂存区的所有内容提交到当前分支上。</span><br></pre></td></tr></table></figure>
 <h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看是否还有文件未提交。</span><br></pre></td></tr></table></figure>

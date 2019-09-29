@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        将swing程序打包成exe文件 - 追寻前路
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 大道至简,大医至爱,适者有寿,仁者无敌 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>pengjie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、创建swing项目"><span class="toc-text">一、创建swing项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、将swing程序打包成jar文件"><span class="toc-text">二、将swing程序打包成jar文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、下载exe4j软件"><span class="toc-text">三、下载exe4j软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、生成可执行文件"><span class="toc-text">四、生成可执行文件</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 大道至简,大医至爱,适者有寿,仁者无敌 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        将swing程序打包成exe文件
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-09-27 18:24:24</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#java" title="java">java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content  indent ">
+        <h2 id="一、创建swing项目"><a href="#一、创建swing项目" class="headerlink" title="一、创建swing项目"></a>一、创建swing项目</h2><p>1.安装WindowBuilder插件：直接在eclipse的Help-&gt;eclipse marketplace,中直接搜索内容：WindowBuilder</p>
+<p>2.在Eclipse中创建一个JavaSwing项目</p>
+<p>方式一：<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">创建项目</span> <span class="comment">new</span><span class="literal">-</span><span class="literal">-</span><span class="comment">other</span><span class="literal">-</span><span class="literal">-</span><span class="comment">WindowBuilder</span><span class="literal">-</span><span class="literal">-</span><span class="comment">SWT</span> <span class="comment">Designer</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">SWT/JFace</span> <span class="comment">java</span> <span class="comment">Project</span></span><br><span class="line"><span class="comment">创建类new</span><span class="literal">-</span><span class="literal">-</span><span class="comment">other</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">WindowBuilder→Swing</span> <span class="comment">Designer→Application</span> <span class="comment">Window</span><span class="string">.</span></span><br></pre></td></tr></table></figure></p>
+<p>方式二：<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">直接创建一个Maven项目</span><br><span class="line">创建类<span class="keyword">new</span><span class="comment">--other----WindowBuilder→Swing Designer→Application Window.</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="二、将swing程序打包成jar文件"><a href="#二、将swing程序打包成jar文件" class="headerlink" title="二、将swing程序打包成jar文件"></a>二、将swing程序打包成jar文件</h2><p>1、右键点击项目，选择“Export…”，选择java-&gt;JAR file点击Next；资源除了src其他的取消选中，然后指定jar文件保存路径，继续点Next；不需要改，点Next；选择Main class，指定开始运行的类，点击Finish结束。<br><img src="将swing程序打包成exe文件01.png" alt><br><img src="将swing程序打包成exe文件02.jpg" alt><br><img src="将swing程序打包成exe文件03.jpg" alt><br><img src="将swing程序打包成exe文件04.jpg" alt></p>
+<h2 id="三、下载exe4j软件"><a href="#三、下载exe4j软件" class="headerlink" title="三、下载exe4j软件"></a>三、下载exe4j软件</h2><p>注意：版本要和jdk对应好</p>
+<p>下载地址：<a href="https://exe4j.apponic.com/" target="_blank" rel="noopener">https://exe4j.apponic.com/</a></p>
+<h2 id="四、生成可执行文件"><a href="#四、生成可执行文件" class="headerlink" title="四、生成可执行文件"></a>四、生成可执行文件</h2><p>步骤如下图所示：<br><img src="将swing程序打包成exe文件05.jpg" alt><br><img src="将swing程序打包成exe文件06.jpg" alt><br><img src="将swing程序打包成exe文件07.jpg" alt><br><img src="将swing程序打包成exe文件08.jpg" alt><br><img src="将swing程序打包成exe文件09.jpg" alt><br><img src="将swing程序打包成exe文件10.jpg" alt><br><img src="将swing程序打包成exe文件11.jpg" alt><br><img src="将swing程序打包成exe文件12.jpg" alt><br><img src="将swing程序打包成exe文件13.jpg" alt><br><img src="将swing程序打包成exe文件14.jpg" alt><br><img src="将swing程序打包成exe文件15.jpg" alt><br><img src="将swing程序打包成exe文件16.jpg" alt><br><img src="将swing程序打包成exe文件17.jpg" alt><br><img src="将swing程序打包成exe文件18.jpg" alt></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" href="https://13202121.github.io/">Code Mover</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        // (function() { // DON'T EDIT BELOW THIS LINE
+        //     var d = document, s = d.createElement('script');
+        //     s.src = 'https://airclouds-blog.disqus.com/embed.js';
+        //     s.setAttribute('data-timestamp', +new Date());
+        //     (d.head || d.body).appendChild(s);
+        // })();
+    </script>
+
+
+
+</html>

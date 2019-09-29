@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        mysql优化建议 - 追寻前路
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 大道至简,大医至爱,适者有寿,仁者无敌 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>pengjie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、EXPLAIN"><span class="toc-text">1、EXPLAIN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、SQL语句中IN包含的值不应过多"><span class="toc-text">2、SQL语句中IN包含的值不应过多</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、SELECT语句务必指明字段名称"><span class="toc-text">3、SELECT语句务必指明字段名称</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、当只需要一条数据的时候，使用limit-1"><span class="toc-text">4、当只需要一条数据的时候，使用limit 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、如果排序字段没有用到索引，就尽量少排序"><span class="toc-text">5、如果排序字段没有用到索引，就尽量少排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、如果限制条件中其他字段没有索引，尽量少用or"><span class="toc-text">6、如果限制条件中其他字段没有索引，尽量少用or</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7、尽量用union-all代替union"><span class="toc-text">7、尽量用union all代替union</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8、不使用ORDER-BY-RAND"><span class="toc-text">8、不使用ORDER BY RAND()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9、区分in和exists、not-in和not-exists"><span class="toc-text">9、区分in和exists、not in和not exists</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10、使用合理的分页方式以提高分页的效率"><span class="toc-text">10、使用合理的分页方式以提高分页的效率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11、分段查询"><span class="toc-text">11、分段查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12、避免在where子句中对字段进行null值判断"><span class="toc-text">12、避免在where子句中对字段进行null值判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13、不建议使用-前缀模糊查询"><span class="toc-text">13、不建议使用%前缀模糊查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14、避免在where子句中对字段进行表达式操作"><span class="toc-text">14、避免在where子句中对字段进行表达式操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15、避免隐式类型转换"><span class="toc-text">15、避免隐式类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16、对于联合索引来说，要遵守最左前缀法则"><span class="toc-text">16、对于联合索引来说，要遵守最左前缀法则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17、必要时可以使用force-index来强制查询走某个索引"><span class="toc-text">17、必要时可以使用force index来强制查询走某个索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18、注意范围查询语句"><span class="toc-text">18、注意范围查询语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19、关于JOIN优化"><span class="toc-text">19、关于JOIN优化</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 大道至简,大医至爱,适者有寿,仁者无敌 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        mysql优化建议
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-08-09 10:42:07</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#mysql" title="mysql">mysql</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content  indent ">
+        <h2 id="1、EXPLAIN"><a href="#1、EXPLAIN" class="headerlink" title="1、EXPLAIN"></a>1、EXPLAIN</h2><p>做MySQL优化，我们要善用EXPLAIN查看SQL执行计划。</p>
+<ul>
+<li>type列，连接类型。一个好的SQL语句至少要达到range级别。杜绝出现all级别</li>
+<li>key列，使用到的索引名。如果没有选择索引，值是NULL。可以采取强制索引方式。</li>
+<li>key_len列，索引长度。</li>
+<li>rows列，扫描行数。该值是个预估值。</li>
+<li>extra列，详细说明。注意，常见的不太友好的值，如下：Using filesort，Using temporary。</li>
+</ul>
+<h2 id="2、SQL语句中IN包含的值不应过多"><a href="#2、SQL语句中IN包含的值不应过多" class="headerlink" title="2、SQL语句中IN包含的值不应过多"></a>2、SQL语句中IN包含的值不应过多</h2><p>MySQL对于IN做了相应的优化，即将IN中的常量全部存储在一个数组里面，而且这个数组是排好序的。但是如果数值较多，产生的消耗也是比较大的。再例如：select id from t where num in(1,2,3) 对于连续的数值，能用between就不要用in了；再或者使用连接来替换。</p>
+<h2 id="3、SELECT语句务必指明字段名称"><a href="#3、SELECT语句务必指明字段名称" class="headerlink" title="3、SELECT语句务必指明字段名称"></a>3、SELECT语句务必指明字段名称</h2><p>SELECT * 增加很多不必要的消耗（CPU、IO、内存、网络带宽）；增加了使用覆盖索引的可能性；当表结构发生改变时，前断也需要更新。所以要求直接在select后面接上字段名。</p>
+<h2 id="4、当只需要一条数据的时候，使用limit-1"><a href="#4、当只需要一条数据的时候，使用limit-1" class="headerlink" title="4、当只需要一条数据的时候，使用limit 1"></a>4、当只需要一条数据的时候，使用limit 1</h2><p>这是为了使EXPLAIN中type列达到const类型</p>
+<h2 id="5、如果排序字段没有用到索引，就尽量少排序"><a href="#5、如果排序字段没有用到索引，就尽量少排序" class="headerlink" title="5、如果排序字段没有用到索引，就尽量少排序"></a>5、如果排序字段没有用到索引，就尽量少排序</h2><h2 id="6、如果限制条件中其他字段没有索引，尽量少用or"><a href="#6、如果限制条件中其他字段没有索引，尽量少用or" class="headerlink" title="6、如果限制条件中其他字段没有索引，尽量少用or"></a>6、如果限制条件中其他字段没有索引，尽量少用or</h2><p>or两边的字段中，如果有一个不是索引字段，而其他条件也不是索引字段，会造成该查询不走索引的情况。很多时候使用union all或者是union（必要的时候）的方式来代替“or”会得到更好的效果。</p>
+<h2 id="7、尽量用union-all代替union"><a href="#7、尽量用union-all代替union" class="headerlink" title="7、尽量用union all代替union"></a>7、尽量用union all代替union</h2><p>union和union all的差异主要是前者需要将结果集合并后再进行唯一性过滤操作，这就会涉及到排序，增加大量的CPU运算，加大资源消耗及延迟。当然，union all的前提条件是两个结果集没有重复数据。</p>
+<h2 id="8、不使用ORDER-BY-RAND"><a href="#8、不使用ORDER-BY-RAND" class="headerlink" title="8、不使用ORDER BY RAND()"></a>8、不使用ORDER BY RAND()</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> <span class="string">`dynamic`</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">rand</span>() <span class="keyword">limit</span> <span class="number">1000</span>;</span><br><span class="line">上面的SQL语句，可优化为：</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> <span class="string">`dynamic`</span> t1 <span class="keyword">join</span> (<span class="keyword">select</span> <span class="keyword">rand</span>() * (<span class="keyword">select</span> <span class="keyword">max</span>(<span class="keyword">id</span>) <span class="keyword">from</span> <span class="string">`dynamic`</span>) <span class="keyword">as</span> nid) t2 <span class="keyword">on</span> t1.id &gt; t2.nidlimit <span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="9、区分in和exists、not-in和not-exists"><a href="#9、区分in和exists、not-in和not-exists" class="headerlink" title="9、区分in和exists、not in和not exists"></a>9、区分in和exists、not in和not exists</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> 表A <span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">in</span> (<span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> 表B)</span><br><span class="line">上面<span class="keyword">SQL</span>语句相当于：</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> 表A <span class="keyword">where</span> <span class="keyword">exists</span>(<span class="keyword">select</span> * <span class="keyword">from</span> 表B <span class="keyword">where</span> 表B.id=表A.id)</span><br></pre></td></tr></table></figure>
+<p>区分in和exists主要是造成了驱动顺序的改变（这是性能变化的关键），如果是exists，那么以外层表为驱动表，先被访问，如果是IN，那么先执行子查询。所以IN适合于外表大而内表小的情况；EXISTS适合于外表小而内表大的情况。</p>
+<p>关于not in和not exists，推荐使用not exists，不仅仅是效率问题，not in可能存在逻辑问题。如何高效的写出一个替代not exists的SQL语句？</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">原SQL语句：</span><br><span class="line">select colname … from A表 where <span class="selector-tag">a</span><span class="selector-class">.id</span> not <span class="keyword">in</span> (select <span class="selector-tag">b</span><span class="selector-class">.id</span> from B表)</span><br><span class="line">高效的SQL语句：</span><br><span class="line">select colname … from A表 Left join B表 on where <span class="selector-tag">a</span><span class="selector-class">.id</span> = <span class="selector-tag">b</span><span class="selector-class">.id</span> where <span class="selector-tag">b</span><span class="selector-class">.id</span> is null</span><br><span class="line">取出的结果集为A表不在B表中的数据</span><br></pre></td></tr></table></figure>
+<h2 id="10、使用合理的分页方式以提高分页的效率"><a href="#10、使用合理的分页方式以提高分页的效率" class="headerlink" title="10、使用合理的分页方式以提高分页的效率"></a>10、使用合理的分页方式以提高分页的效率</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">from</span> product <span class="keyword">limit</span> <span class="number">866613</span>, <span class="number">20</span></span><br><span class="line">使用上述<span class="keyword">SQL</span>语句做分页的时候，可能有人会发现，随着表数据量的增加，直接使用<span class="keyword">limit</span>分页查询会越来越慢。</span><br><span class="line">优化的方法如下：可以取前一页的最大行数的<span class="keyword">id</span>，然后根据这个最大的<span class="keyword">id</span>来限制下一页的起点。比如此列中，上一页最大的<span class="keyword">id</span>是<span class="number">866612</span>。<span class="keyword">SQL</span>可以采用如下的写法：</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">from</span> product <span class="keyword">where</span> <span class="keyword">id</span>&gt; <span class="number">866612</span> <span class="keyword">limit</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<h2 id="11、分段查询"><a href="#11、分段查询" class="headerlink" title="11、分段查询"></a>11、分段查询</h2><p>在一些用户选择页面中，可能一些用户选择的时间范围过大，造成查询缓慢。主要的原因是扫描行数过多。这个时候可以通过程序，分段进行查询，循环遍历，将结果合并处理进行展示。</p>
+<h2 id="12、避免在where子句中对字段进行null值判断"><a href="#12、避免在where子句中对字段进行null值判断" class="headerlink" title="12、避免在where子句中对字段进行null值判断"></a>12、避免在where子句中对字段进行null值判断</h2><p>对于null的判断会导致引擎放弃使用索引而进行全表扫描。</p>
+<h2 id="13、不建议使用-前缀模糊查询"><a href="#13、不建议使用-前缀模糊查询" class="headerlink" title="13、不建议使用%前缀模糊查询"></a>13、不建议使用%前缀模糊查询</h2><p>例如LIKE“%name”或者LIKE“%name%”，这种查询会导致索引失效而进行全表扫描。但是可以使用LIKE “name%”。</p>
+<p>虽然给secret字段添加了索引，但在explain结果并没有使用</p>
+<p>那么如何解决这个问题呢，答案：使用全文索引。</p>
+<p>在我们查询中经常会用到select id,fnum,fdst from dynamic_201606 where user_name like ‘%zhangsan%’; 。这样的语句，普通索引是无法满足查询需求的。庆幸的是在MySQL中，有全文索引来帮助我们。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">创建全文索引的SQL语法是：</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`dynamic_201606`</span> <span class="keyword">ADD</span> FULLTEXT <span class="keyword">INDEX</span> <span class="string">`idx_user_name`</span> (<span class="string">`user_name`</span>);</span><br><span class="line">使用全文索引的SQL语句是：</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>,fnum,fdst <span class="keyword">from</span> dynamic_201606 <span class="keyword">where</span> <span class="keyword">match</span>(user_name) against(<span class="string">'zhangsan'</span> <span class="keyword">in</span> <span class="built_in">boolean</span> <span class="keyword">mode</span>);</span><br><span class="line">注意：在需要创建全文索引之前，请联系DBA确定能否创建。同时需要注意的是查询语句的写法与普通索引的区别。</span><br></pre></td></tr></table></figure>
+<h2 id="14、避免在where子句中对字段进行表达式操作"><a href="#14、避免在where子句中对字段进行表达式操作" class="headerlink" title="14、避免在where子句中对字段进行表达式操作"></a>14、避免在where子句中对字段进行表达式操作</h2><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">比如：</span><br><span class="line"><span class="keyword">select</span> user_id,user_project <span class="keyword">from</span> user_base <span class="keyword">where</span> age*<span class="number">2</span>=<span class="number">36</span>;</span><br><span class="line">中对字段就行了算术运算，这会造成引擎放弃使用索引，建议改成：</span><br><span class="line"><span class="keyword">select</span> user_id,user_project <span class="keyword">from</span> user_base <span class="keyword">where</span> age=<span class="number">36</span>/<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="15、避免隐式类型转换"><a href="#15、避免隐式类型转换" class="headerlink" title="15、避免隐式类型转换"></a>15、避免隐式类型转换</h2><p>where子句中出现column字段的类型和传入的参数类型不一致的时候发生的类型转换，建议先确定where中的参数类型。</p>
+<h2 id="16、对于联合索引来说，要遵守最左前缀法则"><a href="#16、对于联合索引来说，要遵守最左前缀法则" class="headerlink" title="16、对于联合索引来说，要遵守最左前缀法则"></a>16、对于联合索引来说，要遵守最左前缀法则</h2><p>举列来说索引含有字段id、name、school，可以直接用id字段，也可以id、name这样的顺序，但是name;school都无法使用这个索引。所以在创建联合索引的时候一定要注意索引字段顺序，常用的查询字段放在最前面。</p>
+<h2 id="17、必要时可以使用force-index来强制查询走某个索引"><a href="#17、必要时可以使用force-index来强制查询走某个索引" class="headerlink" title="17、必要时可以使用force index来强制查询走某个索引"></a>17、必要时可以使用force index来强制查询走某个索引</h2><p>有的时候MySQL优化器采取它认为合适的索引来检索SQL语句，但是可能它所采用的索引并不是我们想要的。这时就可以采用forceindex来强制优化器使用我们制定的索引。</p>
+<h2 id="18、注意范围查询语句"><a href="#18、注意范围查询语句" class="headerlink" title="18、注意范围查询语句"></a>18、注意范围查询语句</h2><p>对于联合索引来说，如果存在范围查询，比如between、&gt;、&lt;等条件时，会造成后面的索引字段失效。</p>
+<h2 id="19、关于JOIN优化"><a href="#19、关于JOIN优化" class="headerlink" title="19、关于JOIN优化"></a>19、关于JOIN优化</h2><p>EFT JOIN A表为驱动表，INNER JOIN MySQL会自动找出那个数据少的表作用驱动表，RIGHT JOIN B表为驱动表。</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">注意：</span><br><span class="line">1）MySQL中没有full join，可以用以下方式来解决：</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> A <span class="keyword">left</span> <span class="keyword">join</span> B <span class="keyword">on</span> B.name = A.namewhere B.name <span class="keyword">is</span> nullunion allselect * <span class="keyword">from</span> B;</span><br><span class="line">2）尽量使用inner join，避免left join：</span><br><span class="line">参与联合查询的表至少为2张表，一般都存在大小之分。如果连接方式是inner join，在没有其他过滤条件的情况下MySQL会自动选择小表作为驱动表，但是left join在驱动表的选择上遵循的是左边驱动右边的原则，即left join左边的表名为驱动表。</span><br><span class="line">3）合理利用索引：</span><br><span class="line">被驱动表的索引字段作为on的限制字段。</span><br><span class="line">4）利用小表去驱动大表：</span><br><span class="line">如果能够减少驱动表的话，减少嵌套循环中的循环次数，以减少 IO总量及CPU运算的次数。</span><br><span class="line">5）巧用STRAIGHT_JOIN：</span><br><span class="line">inner join是由MySQL选择驱动表，但是有些特殊情况需要选择另个表作为驱动表，比如有group by、order by等「Using filesort」、「Using temporary」时。STRAIGHT_JOIN来强制连接顺序，在STRAIGHT_JOIN左边的表名就是驱动表，右边则是被驱动表。在使用STRAIGHT_JOIN有个前提条件是该查询是内连接，也就是inner join。其他链接不推荐使用STRAIGHT_JOIN，否则可能造成查询结果不准确。</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="symbol">`rl`</span>.<span class="symbol">`fid`</span>,</span><br><span class="line">        <span class="symbol">`rl`</span>.<span class="symbol">`update_time`</span> <span class="keyword">as</span> <span class="symbol">`add_time`</span>,</span><br><span class="line">        <span class="symbol">`f`</span>.<span class="symbol">`fnum`</span>,</span><br><span class="line">        <span class="symbol">`f`</span>.<span class="symbol">`dst_parking`</span>,</span><br><span class="line">        <span class="symbol">`f`</span>.<span class="symbol">`aircraft_num`</span>,</span><br><span class="line">        <span class="symbol">`f`</span>.<span class="symbol">`touch_down_runway`</span>,</span><br><span class="line">        <span class="symbol">`f`</span>.<span class="symbol">`forg`</span>,</span><br><span class="line">        <span class="symbol">`f`</span>.<span class="symbol">`fdst`</span>,</span><br><span class="line">        <span class="symbol">`f`</span>.<span class="symbol">`flight_status_code`</span>,</span><br><span class="line">        <span class="symbol">`fd`</span>.<span class="symbol">`fdst`</span> <span class="keyword">as</span> <span class="symbol">`fd_fdst`</span>,</span><br><span class="line">        <span class="symbol">`ds`</span>.<span class="symbol">`touch_down_runway_source`</span>,</span><br><span class="line">        <span class="symbol">`ds`</span>.<span class="symbol">`touch_down_runway_update_time`</span>,</span><br><span class="line">        <span class="symbol">`u`</span>.<span class="symbol">`truename`</span>,</span><br><span class="line">        <span class="symbol">`a`</span>.<span class="symbol">`aircraft_model`</span></span><br><span class="line">    <span class="keyword">FROM</span> <span class="symbol">`goms_flight_runway_log`</span> <span class="keyword">as</span> <span class="symbol">`rl`</span></span><br><span class="line">    STRAIGHT_JOIN <span class="symbol">`goms_flight`</span> <span class="keyword">as</span> <span class="symbol">`f`</span> <span class="keyword">ON</span> <span class="symbol">`rl`</span>.<span class="symbol">`fid`</span> = <span class="symbol">`f`</span>.<span class="symbol">`fid`</span></span><br><span class="line">    <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="symbol">`goms_aircraft`</span> <span class="keyword">as</span> <span class="symbol">`a`</span> <span class="keyword">ON</span> <span class="symbol">`f`</span>.<span class="symbol">`aircraft_num`</span> = <span class="symbol">`a`</span>.<span class="symbol">`aircraft_num`</span></span><br><span class="line">    <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="symbol">`goms_flight_link`</span> <span class="keyword">as</span> <span class="symbol">`fl`</span> <span class="keyword">ON</span> <span class="symbol">`f`</span>.<span class="symbol">`fid`</span> = <span class="symbol">`fl`</span>.<span class="symbol">`arr_fid`</span></span><br><span class="line">    <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="symbol">`goms_flight`</span> <span class="keyword">as</span> <span class="symbol">`fd`</span> <span class="keyword">ON</span> <span class="symbol">`fl`</span>.<span class="symbol">`dept_fid`</span> = <span class="symbol">`fd`</span>.<span class="symbol">`fid`</span></span><br><span class="line">    <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="symbol">`goms_flight_field_data_source`</span> <span class="keyword">as</span> <span class="symbol">`ds`</span> <span class="keyword">ON</span> <span class="symbol">`f`</span>.<span class="symbol">`fid`</span> = <span class="symbol">`ds`</span>.<span class="symbol">`fid`</span></span><br><span class="line">    <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="symbol">`goms_user`</span> <span class="keyword">as</span> <span class="symbol">`u`</span> <span class="keyword">ON</span> <span class="symbol">`ds`</span>.<span class="symbol">`touch_down_runway_source`</span> = <span class="symbol">`u`</span>.<span class="symbol">`uid`</span></span><br><span class="line">    <span class="keyword">WHERE</span> <span class="symbol">`rl`</span>.<span class="symbol">`op_type`</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">AND</span> <span class="symbol">`f`</span>.<span class="symbol">`fdst`</span> = <span class="string">'PVG'</span></span><br><span class="line">        <span class="keyword">AND</span> <span class="symbol">`f`</span>.<span class="symbol">`fid`</span> != <span class="string">''</span></span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="symbol">`rl`</span>.<span class="symbol">`fid`</span></span><br><span class="line">    <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="symbol">`rl`</span>.<span class="symbol">`update_time`</span> <span class="keyword">DESC</span></span><br><span class="line">    <span class="keyword">LIMIT</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<p>这个方式有时能减少3倍的时间。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" href="https://13202121.github.io/">Code Mover</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        // (function() { // DON'T EDIT BELOW THIS LINE
+        //     var d = document, s = d.createElement('script');
+        //     s.src = 'https://airclouds-blog.disqus.com/embed.js';
+        //     s.setAttribute('data-timestamp', +new Date());
+        //     (d.head || d.body).appendChild(s);
+        // })();
+    </script>
+
+
+
+</html>
