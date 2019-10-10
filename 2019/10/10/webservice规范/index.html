@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        webservice规范 - 追寻前路
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 大道至简,大医至爱,适者有寿,仁者无敌 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>pengjie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-webservice是啥"><span class="toc-text">1.webservice是啥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-调用已发布的webservice"><span class="toc-text">3.调用已发布的webservice</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-get请求方式"><span class="toc-text">3.1 get请求方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-post请求方式"><span class="toc-text">3.2 post请求方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-SOAP方式请求"><span class="toc-text">3.3 SOAP方式请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-使用wsimport"><span class="toc-text">3.4 使用wsimport</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 大道至简,大医至爱,适者有寿,仁者无敌 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        webservice规范
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-10-10 14:53:10</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#java" title="java">java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="1-webservice是啥"><a href="#1-webservice是啥" class="headerlink" title="1.webservice是啥"></a>1.webservice是啥</h2><p>准确的来说，webservice不是一种技术，而是一种规范。是一种跨平台，跨语言的规范，用于不同平台，不同语言开发的应用之间的交互。</p>
+<p>举个例子，比如在WindowsServer服务器上有个C#.Net开发的应用A，在Linux上有个Java语言开发的应用B，现在B应用要调用A应用，或者是互相调用，用于查看对方的业务数据，就需要webservice的规范。</p>
+<p>再举个例子，天气预报接口。无数的应用需要获取天气预报信息，这些应用可能是各种平台，各种技术实现，而气象局的项目，估计也就一两种，要对外提供天气预报信息，这个时候，如何解决呢？webservice就是出于以上类似需求而定义出来的规范。</p>
+<p>我们一般就是在具体平台开发webservice接口，以及调用webservice接口，每种开发语言都有自己的webservice实现框架。比如Java 就有 Apache Axis1、Apache Axis2、Codehaus XFire、Apache CXF、Apache Wink、Jboss RESTEasyd等等。其中Apache CXF用的比较多，它也可以和Spring整合。</p>
+<h2 id="3-调用已发布的webservice"><a href="#3-调用已发布的webservice" class="headerlink" title="3.调用已发布的webservice"></a>3.调用已发布的webservice</h2><h3 id="3-1-get请求方式"><a href="#3-1-get请求方式" class="headerlink" title="3.1 get请求方式"></a>3.1 get请求方式</h3><h3 id="3-2-post请求方式"><a href="#3-2-post请求方式" class="headerlink" title="3.2 post请求方式"></a>3.2 post请求方式</h3><h3 id="3-3-SOAP方式请求"><a href="#3-3-SOAP方式请求" class="headerlink" title="3.3 SOAP方式请求"></a>3.3 SOAP方式请求</h3><h3 id="3-4-使用wsimport"><a href="#3-4-使用wsimport" class="headerlink" title="3.4 使用wsimport"></a>3.4 使用wsimport</h3><p>每个ws都会有一个WSDL，WSDL即WebService Description Language – Web服务描述语言。它是通过XML形式说明服务在什么地方－地址。通过XML形式说明服务提供什么样的方法 – 如何调用。我们可以通过这个WSDL来获取和这个ws有关的信息，包括class和java代码。关于这个WSDL后面我再具体分析，这一节先来看一下如何使用。<br>wsimport是一个命令，jdk1.6及以上才可以使用，ws针对不同的语言都会有个wsimport命令，我们可以在自己安装的jdk的bin目录下找到这个wsimport.exe，正因为有了这个，所以我们可以在命令行中使用wsimport命令。怎么使用呢？<br>每个ws都会有一个WSDL，就拿上面的归属地查询服务来说，上面第二张图上面有个服务说明，点开就可以看到WSDL，当然也可以直接访问浏览器上的url来访问这个WSDL，即xml文档。如下：<br><img src="01.png" alt="图片无法显示"><br>目前只需要复制一下那个url即可，然后打开命令提示符窗口，随便进入一个目录下（该目录要保存等会生成的和ws相关的文件，自己事先建一个即可），运行：<br>wsimport <a href="http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?WSDL" target="_blank" rel="noopener">http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?WSDL</a><br>就会生成相应的javabean，当然了，是.class文件，但是我们不想要class文件，我们想要java文件，所以可以使用如下命令：<br>wsimport -s <a href="http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?WSDL" target="_blank" rel="noopener">http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?WSDL</a><br>这样不仅生成了class文件，还生成了java文件，如果我们想要在固定的包下生成这些文件，等会方便直接拷贝到项目里，可以使用下面的命令：<br>wsimport -s . -p ws.client.c <a href="http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?WSDL" target="_blank" rel="noopener">http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?WSDL</a><br>这样就会在目录ws/client/c/下生成所需要的class和java代码，然后我们删掉class文件，直接拷贝ws目录到工程中即可，如下(_Main是我自己写的，用来调用使用的)：<br><img src="02.png" alt="图片无法显示"><br>这样就有了号码归属地查询这个ws服务相关的API了，这是通过官方的WSDL来生成的，然后我们如何在自己的项目中使用呢？我新写一个_Main.java文件，直接使用这些API即可，如下：<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> _<span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        <span class="comment">// 获取一个ws服务</span></span><br><span class="line">        MobileCodeWS ws = <span class="keyword">new</span> <span class="type">MobileCodeWS</span>();</span><br><span class="line">        <span class="comment">// 获取具体的服务类型：get post soap1.1 soap1.2</span></span><br><span class="line">        MobileCodeWSSoap wsSoap = ws.getMobileCodeWSSoap();</span><br><span class="line">        <span class="keyword">String</span> address = wsSoap.getMobileCodeInfo(<span class="string">"18312345678"</span>, <span class="literal">null</span>);</span><br><span class="line">        System.out.println(<span class="string">"手机归属地信息为："</span> + address);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就很方便了，现在已经完全没有了上面那种连接啊，设置地址啊等等，直接封装好了，我直接调用这些API即可调用远程的webservice。这也是官方推荐的一种方法，当然我们也可以将生成的class文件打包成jar放到工程中。运行一下这个main方法后，也直接返回归属地，没有那些标签的东西了，这才是开发中所需要的东西。<br>到这里基本已经会调用webservice了，最后再简单总结一下，ws中这个WSDL很重要，这里面用xml描述了该ws的信息，所以我们可以通过解析WSDL来获取该ws相关的API，然后在自己的项目中调用这些API即可调用该ws。<br>————————————————<br>版权声明：本文为CSDN博主「eson_15」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/eson_15/article/details/52021319" target="_blank" rel="noopener">https://blog.csdn.net/eson_15/article/details/52021319</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" href="https://13202121.github.io/">Code Mover</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        // (function() { // DON'T EDIT BELOW THIS LINE
+        //     var d = document, s = d.createElement('script');
+        //     s.src = 'https://airclouds-blog.disqus.com/embed.js';
+        //     s.setAttribute('data-timestamp', +new Date());
+        //     (d.head || d.body).appendChild(s);
+        // })();
+    </script>
+
+
+
+</html>
