@@ -8,8 +8,41 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Thu, 17 Oct 2019 03:02:25 GMT</pubDate>
+    <pubDate>Fri, 18 Oct 2019 09:11:05 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>redis基础知识</title>
+      <link>https://findrun.github.io/2019/10/18/redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+      <guid>https://findrun.github.io/2019/10/18/redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+      <pubDate>Fri, 18 Oct 2019 07:31:01 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h2 id=&quot;Redis命令&quot;&gt;&lt;a href=&quot;#Redis命令&quot; class=&quot;headerlink&quot; title=&quot;Redis命令&quot;&gt;&lt;/a&gt;Redis命令&lt;/h2&gt;&lt;p&gt;1、进入redis命令行：redis-cli -h host -p port -a password
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Redis命令"><a href="#Redis命令" class="headerlink" title="Redis命令"></a>Redis命令</h2><p>1、进入redis命令行：redis-cli -h host -p port -a password<br>2、将Redis注册为windows服务：redis-server.exe –service-install redis.windows.conf</p><h2 id="Redis支持的数据类型"><a href="#Redis支持的数据类型" class="headerlink" title="Redis支持的数据类型"></a>Redis支持的数据类型</h2><p>String字符串：<br>格式: set key value<br>string类型是二进制安全的。意思是redis的string可以包含任何数据。比如jpg图片或者序列化的对象 。<br>string类型是Redis最基本的数据类型，一个键最大能存储512MB。</p><p>Hash（哈希）<br>格式: hmset name  key1 value1 key2 value2<br>Redis hash 是一个键值(key=&gt;value)对集合。<br>Redis hash是一个string类型的field和value的映射表，hash特别适合用于存储对象。</p><p>List（列表）<br>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）<br>格式: lpush  name  value<br>在 key 对应 list 的头部添加字符串元素<br>格式: rpush  name  value<br>在 key 对应 list 的尾部添加字符串元素<br>格式: lrem name  index<br>key 对应 list 中删除 count 个和 value 相同的元素<br>格式: llen name<br>返回 key 对应 list 的长度</p><p>Set（集合）<br>格式: sadd  name  value<br>Redis的Set是string类型的无序集合。<br>集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是O(1)。</p><p>zset(sorted set：有序集合)<br>格式: zadd  name score value<br>Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。<br>不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。<br>zset的成员是唯一的,但分数(score)却可以重复。</p><h2 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h2><p>持久化就是把内存的数据写到磁盘中去，防止服务宕机了内存数据丢失。<br>Redis提供了两种持久化方式:RDB（默认）和AOF。</p><h3 id="RDB机制的策略"><a href="#RDB机制的策略" class="headerlink" title="RDB机制的策略"></a>RDB机制的策略</h3><p>RDB持久化是指在指定的时间间隔内将内存中的数据和操作通过快照的方式保存到redis bin目录下的一个默认名为 dump.rdb的文件，可以通过配置设置自动的快照持久化的方式，我们可以配置redis在n秒内进行快照的时间，如果超过这个时间节点，将会自动执行快照操作。虽然这种方式方便快捷，但是无法保证数据的绝对安全可靠，如果服务器在非备份时间跨度内发生了故障，无法做到对当前状态的实时保存，导致数据丢失。而且每次保存 RDB文件时， Redis都需要 fork()出一个子进程，由子进程来执行具体的持久化工作，对资源消耗较大。——最大缺点</p><p>相关配置：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">save：这里是用来配置触发 Redis的 RDB 持久化条件，比如“save m n”。表示m秒内数据集存在n次修改时</span><br><span class="line">    save <span class="number">900</span> <span class="number">1</span>：表示<span class="number">900</span> 秒内如果至少有 <span class="number">1</span> 个 <span class="type">key</span> 的值变化，则保存</span><br><span class="line">    save <span class="number">300</span> <span class="number">10</span>：表示<span class="number">300</span> 秒内如果至少有 <span class="number">10</span> 个 <span class="type">key</span> 的值变化，则保存</span><br><span class="line">    save <span class="number">60</span> <span class="number">10000</span>：表示<span class="number">60</span> 秒内如果至少有 <span class="number">10000</span> 个 <span class="type">key</span> 的值变化，则保存</span><br><span class="line">如果你只是用Redis的缓存功能，不需要持久化，那么你可以注释掉所有的 save 行来停用保存功能。可以直接一个空字符串来实现停用：save <span class="string">""</span></span><br><span class="line"></span><br><span class="line">stop-writes-on-bgsave-error：默认值为yes。当启用了RDB且最后一次后台保存数据失败，Redis是否停止接收数据。这会让用户意识到数据没有正确持久化到磁盘上，否则没有人会注意到灾难（disaster）发生了。如果Redis重启了，那么又可以重新开始接收数据了</span><br><span class="line"></span><br><span class="line">rdbcompression：默认值是yes。对于存储到磁盘中的快照，可以设置是否进行压缩存储。如果是的话，redis会采用LZF算法进行压缩。如果你不想消耗CPU来进行压缩的话，可以设置为关闭此功能，但是存储在磁盘上的快照会比较大。</span><br><span class="line"></span><br><span class="line">rdbchecksum：默认值是yes。在存储快照后，我们还可以让redis使用CRC64算法来进行数据校验，但是这样做会增加大约<span class="number">10</span>%的性能消耗，如果希望获取到最大的性能提升，可以关闭此功能</span><br><span class="line"></span><br><span class="line">dbfilename：设置快照的文件名，默认是 dump.rdb</span><br><span class="line"></span><br><span class="line">dir：设置快照文件的存放路径，这个配置项一定是个目录，而不能是文件名。默认是和当前配置文件保存在同一目录</span><br><span class="line"></span><br><span class="line">也就是说通过在配置文件中配置的 save 方式，当实际操作满足该配置形式时就会进行 RDB 持久化，将当前的内存快照保存在 dir 配置的目录中，文件名由配置的 dbfilename 决定</span><br></pre></td></tr></table></figure></p><p>手动触发RDB快照，命令：1.save（会造成阻塞）2.bgsave（Redis进程执行fork操作创建子进程，RDB持久化过程由子进程负责，完成后自动结束）</p><h3 id="AOF机制的策略"><a href="#AOF机制的策略" class="headerlink" title="AOF机制的策略"></a>AOF机制的策略</h3><p>redis 的 AOF 持久化是在每次接受到的写命令通过 write函数追加到文件中（默认是 appendonly.aof），但是由于操作系统在写入文件时使用了缓存来提高写入效率，还是可能会出现因服务器突然故障而导致的数据丢失，故我们可以通过配置文件告诉redis我们同步数据的时间间隔（默认间隔是每秒同步一次）</p><p>相关配置：<br><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes(默认no,关闭)：是否开启AOF持久化</span><br><span class="line"></span><br><span class="line">appendfilename <span class="string">"appendonly.aof"</span>：AOF持久化配置文件的名称</span><br><span class="line"></span><br><span class="line">appendfsync everysec：AOF持久化策略</span><br><span class="line">    always - 同步持久化，每次发生数据变更会被立即记录到磁盘，性能差但数据完整性比较好</span><br><span class="line">    everysec - 异步操作，每秒记录，如果一秒钟内宕机，有数据丢失，推荐</span><br><span class="line">    no - 将缓存回写的策略交给系统，linux 默认是<span class="number">30</span>秒将缓冲区的数据回写硬盘的</span><br><span class="line"></span><br><span class="line">AOF的<span class="keyword">Rewrite</span>(重写)：</span><br><span class="line">当AOF文件的大小超过了配置所设置的阙值时，Redis就会启动AOF文件压缩，只保留可以恢复数据的最小指令集，可以使用命令bgrewriteaof</span><br><span class="line">触发机制：Redis会记录上次重写时的AOF文件大小，默认配置时当AOF文件大小是上次<span class="built_in">rewrite</span>后大小的一倍且文件大于<span class="number">64</span>M时触发</span><br><span class="line"><span class="built_in">auto</span>-aof-<span class="built_in">rewrite</span>-percentage <span class="number">100</span></span><br><span class="line"><span class="built_in">auto</span>-aof-<span class="built_in">rewrite</span>-min-size <span class="number">64</span>mb</span><br></pre></td></tr></table></figure></p>]]></content:encoded>
+      
+      <comments>https://findrun.github.io/2019/10/18/redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>面试相关</title>
+      <link>https://findrun.github.io/2019/10/18/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/</link>
+      <guid>https://findrun.github.io/2019/10/18/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/</guid>
+      <pubDate>Fri, 18 Oct 2019 03:34:41 GMT</pubDate>
+      <description>
+      
+      </description>
+      
+      
+      <comments>https://findrun.github.io/2019/10/18/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>软件开发中会用到的图</title>
