@@ -87,7 +87,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows上安装MySQL"><span class="toc-text">Windows上安装MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux上安装MySQL（压缩包版）"><span class="toc-text">Linux上安装MySQL（压缩包版）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装MySQL图形界面"><span class="toc-text">安装MySQL图形界面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows上安装MySQL"><span class="toc-text">Windows上安装MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux上安装MySQL（压缩包版）"><span class="toc-text">Linux上安装MySQL（压缩包版）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux上安装MySQL（yum源安装）"><span class="toc-text">Linux上安装MySQL（yum源安装）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装MySQL图形界面"><span class="toc-text">安装MySQL图形界面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
 </div>
     
 </div>
@@ -148,6 +148,13 @@
 <p>5.进入客户端<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>登录：进入bin目录，./mysql -uroot -p</span><br><span class="line"><span class="number">2.</span>修改密码：<span class="keyword">set</span> password=password(<span class="string">'你的密码'</span>);</span><br><span class="line"><span class="number">3.</span>远程登录：首先需要关闭防火墙</span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line"><span class="number">4.</span>给window授权，给所有访问者权限</span><br><span class="line">grant <span class="keyword">all</span> privileges on *.* to root@<span class="string">'%'</span> identified by <span class="string">'123456'</span>;</span><br><span class="line"><span class="number">5.</span>注意：若mysql登录不了，提示需要密码，可以执行以下步骤：</span><br><span class="line">    <span class="number">5.1</span> 修改my.cnf，在[mysqld]后面任意一行添加“skip-grant-tables”用来跳过密码验证的过程</span><br><span class="line">    <span class="number">5.2</span> 重启mysql：/etc/init.d/mysql restart</span><br><span class="line">    <span class="number">5.3</span> 进入之后，进入mysql数据库的user表，修改它的密码字段</span><br><span class="line">    mysql&gt; use mysql;</span><br><span class="line">    mysql&gt; update user <span class="keyword">set</span> password=password(<span class="string">"你的新密码"</span>) where <span class="comment">user=</span><span class="comment">"root"</span>;</span><br><span class="line">    mysql&gt; flush privileges;</span><br><span class="line">    mysql&gt; quit</span><br></pre></td></tr></table></figure></p>
 <p>6.设置开机启动<br>添加mysql服务：chkconfig –add mysql<br>设置服务开机启动：chkconfig mysql on</p>
 <p>7.设置path环境变量<br>vi /etc/profile<br>设置环境变量：export PATH=$JAVA_HOME/bin:/usr/local/mysql/bin:$PATH<br>设好环境变量后就可以在任意目录下登录mysql了</p>
+<h2 id="Linux上安装MySQL（yum源安装）"><a href="#Linux上安装MySQL（yum源安装）" class="headerlink" title="Linux上安装MySQL（yum源安装）"></a>Linux上安装MySQL（yum源安装）</h2><p>1.下载并安装MySQL官方的 Yum Repository<br>wget -i -c <a href="http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm" target="_blank" rel="noopener">http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm</a></p>
+<p>2.安装rpm<br>yum -y install mysql57-community-release-el7-10.noarch.rpm</p>
+<p>3.安装mysql服务器<br>yum -y install mysql-community-server</p>
+<p>4.启动mysql服务<br>systemctl start  mysqld.service</p>
+<p>5.进入mysql<br>首先在/var/log/mysqld.log中找到初始密码，然后进行密码修改：ALTER USER ‘root‘@’localhost’ IDENTIFIED BY ‘new password’;<br>注意：密码设置过于简单会报错，可以进行一下操作来设置<br>mysql初始密码规则查看命令：SHOW VARIABLES LIKE ‘validate_password%’;<br>进行一下设置后就可以使用简单密码了：<br>set global validate_password_policy=0;<br>set global validate_password_length=1;</p>
+<p>6.但此时还有一个问题，就是因为安装了Yum Repository，以后每次yum操作都会自动更新，需要把这个卸载掉：yum -y remove mysql57-community-release-el7-10.noarch</p>
+<p>7.摘自<a href="https://www.cnblogs.com/luohanguo/p/9045391.html" target="_blank" rel="noopener">https://www.cnblogs.com/luohanguo/p/9045391.html</a></p>
 <h2 id="安装MySQL图形界面"><a href="#安装MySQL图形界面" class="headerlink" title="安装MySQL图形界面"></a>安装MySQL图形界面</h2><p>1.安装SQLyog<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用SQLyog登录时可能会出现2058错误，这是因为mysql加密方式变了，需要进行以下操作：</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">'root'</span>@<span class="string">'localhost'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">WITH</span> mysql_native_password <span class="keyword">BY</span> <span class="string">'123456'</span>;</span><br></pre></td></tr></table></figure></p>
 <p>2.SQLyog注册码（2019）<br>ttrar<br>8d8120df-a5c3-4989-8f47-5afc79c56e7c</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>www.runoob.com<span class="regexp">/mysql/my</span>sql-administration.html</span><br></pre></td></tr></table></figure>
@@ -215,6 +222,7 @@
 <script src="/js/jquery-1.11.3.min.js"></script>
 <script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="/js/busuanzi.pure.mini.js"></script> -->
 
 
     <script>
