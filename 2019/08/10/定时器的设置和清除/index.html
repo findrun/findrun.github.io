@@ -9,7 +9,7 @@
 
     <title>
         
-        追寻前路
+        定时器的设置和清除 - 追寻前路
         
     </title>
 
@@ -51,7 +51,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li  class=active >
+            <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>主页</span>
@@ -86,6 +86,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    
+</div>
+    
 </div>
 
 
@@ -110,137 +114,46 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-preview-container" style="min-height: 576px">
-    
-    <div class="post-preview">
-        <div class="post-time">2019-08-06</div>
-        <div class="post-info">
-            <a href="/2019/08/06/linux常用命令/">
-                <h3>
-                    linux常用命令
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#linux" title="linux">linux</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+
+<div class="post-container">
+    <div class="post-title">
+        定时器的设置和清除
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-08-06</div>
-        <div class="post-info">
-            <a href="/2019/08/06/hexo常用命令/">
-                <h3>
-                    hexo常用命令
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#hexo" title="hexo">hexo</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-08-10 14:15:04</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#javascript" title="javascript">javascript</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-08-05</div>
-        <div class="post-info">
-            <a href="/2019/08/05/gitignore和-gitmodules的使用/">
-                <h3>
-                    .gitignore和.gitmodules的使用
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#git" title="git">git</a>
-                <span>/</span>
-                
-                
-            </p>
+    <div class="post-content no-indent">
+        <p>一、定时器有两种：</p>
+<p>1.setTimeout([func], [interval])<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">设定一个等待时间<span class="string">[interval]</span>，当到达时间后执行方法<span class="string">[func]</span>，</span><br><span class="line">当方法执行完成后停止。（定时器还在，只不过没用了）</span><br></pre></td></tr></table></figure></p>
+<p>2.setInterval([func], [interval])<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">设定一个等待时间<span class="string">[interval]</span>，每隔<span class="string">[interval]</span>时间就执行方法<span class="string">[func]</span>，</span><br><span class="line">直到我们手动清除定时器。</span><br></pre></td></tr></table></figure></p>
+<p>二、清除定时器</p>
+<p>1.定时器是有返回值的，返回值是一个数字，代表第几个定时器；</p>
+<p>2.可以通过clearTimeout和clearInterval清除定时器，参数为设置定时器时的返回值，从技术上来说clearInterval和clearTimeout是可以互用的，不过这样做会造成语义上的歧义，因此并不建议。</p>
+
+        
+        <br />
+        <div id="comment-container">
         </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-01-01</div>
-        <div class="post-info">
-            <a href="/2019/01/01/梦幻完美/">
-                <h3>
-                    梦幻完美
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#游戏" title="游戏">游戏</a>
-                <span>/</span>
-                
-                
-            </p>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
         </div>
+
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-08-09</div>
-        <div class="post-info">
-            <a href="/2018/08/09/简单完美/">
-                <h3>
-                    简单完美
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#游戏" title="游戏">游戏</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2018-08-08</div>
-        <div class="post-info">
-            <a href="/2018/08/08/游戏相关网站/">
-                <h3>
-                    游戏相关网站
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#游戏" title="游戏">游戏</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
 </div>
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/page/3/">&larr; Newer Posts</a>
-    </li>
-    
-    
-</ul>
 
     </div>
 </div>
@@ -288,7 +201,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
 <script src="/js/jquery-1.11.3.min.js"></script>
@@ -296,6 +209,25 @@
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <!-- <script src="/js/busuanzi.pure.mini.js"></script> -->
 
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        // (function() { // DON'T EDIT BELOW THIS LINE
+        //     var d = document, s = d.createElement('script');
+        //     s.src = 'https://airclouds-blog.disqus.com/embed.js';
+        //     s.setAttribute('data-timestamp', +new Date());
+        //     (d.head || d.body).appendChild(s);
+        // })();
+    </script>
 
 
 
