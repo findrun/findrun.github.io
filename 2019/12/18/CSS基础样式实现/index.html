@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        CSS基础样式实现 - 追寻前路
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 大道至简,大医至爱,适者有寿,仁者无敌 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>pengjie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3自适应布局"><span class="toc-text">CSS3自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现圆角边框"><span class="toc-text">实现圆角边框</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 大道至简,大医至爱,适者有寿,仁者无敌 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        CSS基础样式实现
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-12-18 09:19:33</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#css" title="css">css</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="CSS3自适应布局"><a href="#CSS3自适应布局" class="headerlink" title="CSS3自适应布局"></a>CSS3自适应布局</h2><p>视口单位(Viewport units)</p>
+<p>什么是视口？ </p>
+<p>在PC端，视口指的是在PC端，指的是浏览器的可视区域；</p>
+<p>而在移动端，它涉及3个视口：Layout Viewport（布局视口），Visual Viewport（视觉视口），Ideal Viewport（理想视口）。</p>
+<p>视口单位中的“视口”，PC端指的是浏览器的可视区域；移动端指的就是Viewport中的Layout Viewport。</p>
+<p> 根据CSS3规范，视口单位主要包括以下4个：</p>
+<pre><code>1.vw：1vw等于视口宽度的1%。
+
+2.vh：1vh等于视口高度的1%。
+
+3.vmin：选取vw和vh中最小的那个。
+
+4.vmax：选取vw和vh中最大的那个。
+</code></pre><p> vh and vw：相对于视口的高度和宽度，而不是父元素的（CSS百分比是相对于包含它的最近的父元素的高度和宽度）。1vh 等于1/100的视口高度，1vw 等于1/100的视口宽度。</p>
+<p>比如：浏览器高度950px，宽度为1920px, 1 vh = 950px/100 = 9.5 px，1vw = 1920px/100 =19.2 px。</p>
+<p>vmax相对于视口的宽度或高度中较大的那个。其中最大的那个被均分为100单位的vmax。</p>
+<p>vmin相对于视口的宽度或高度中较小的那个。其中最小的那个被均分为100单位的vmin。</p>
+<h2 id="实现圆角边框"><a href="#实现圆角边框" class="headerlink" title="实现圆角边框"></a>实现圆角边框</h2><p>圆角边框（border-radius）的基本用法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">圆角边框的最基本用法就是设置四个相同弧度的圆角</span><br><span class="line"></span><br><span class="line">boder-<span class="attribute">top</span>-left-radius：<span class="number">30px</span>；      //左上角</span><br><span class="line"></span><br><span class="line">boder-<span class="attribute">top</span>-right-radius：<span class="number">30px</span>；   //右上角</span><br><span class="line"></span><br><span class="line">boder-<span class="attribute">bottom</span>-left-radius：<span class="number">30px</span>；  //右下角</span><br><span class="line"></span><br><span class="line">boder-<span class="attribute">bottom</span>-right-radius：<span class="number">30px</span>； //左下角</span><br><span class="line"></span><br><span class="line">如果这四个弧度的圆角相同，可以写成：</span><br><span class="line"></span><br><span class="line"><span class="attribute">border-radius</span>：<span class="number">30px</span>；</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line"></span><br><span class="line">css部分：</span><br><span class="line"></span><br><span class="line">.div1&#123;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">margin</span>:<span class="number">0</span> auto;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">background</span>: darkcyan;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">border</span>:<span class="number">2px</span> solid darkslategray;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">border-radius</span>:<span class="number">30px</span>;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">text-align</span>: center;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">line-height</span>: <span class="number">200px</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">html部分：</span><br><span class="line"></span><br><span class="line"> &lt;<span class="selector-tag">div</span> class=<span class="string">"div1"</span>&gt;圆角边框&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">圆角边框也可以使用百分比作为单位，比如：将一个正方形的圆角边框设置为<span class="number">50%</span>，那么就会形成一个圆，不过使用百分比与像素并不能等效。</span><br><span class="line"></span><br><span class="line">注意：百分比大于<span class="number">50%</span>后，形状就不会再变化了，圆角的半径不能超过宽/高的一半</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line"></span><br><span class="line">css部分：</span><br><span class="line"></span><br><span class="line">.box1&#123;</span><br><span class="line"></span><br><span class="line"><span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">margin</span>: <span class="number">30px</span> auto;</span><br><span class="line"></span><br><span class="line"><span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#e4007e</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">text-align</span>: center;</span><br><span class="line"></span><br><span class="line"><span class="attribute">line-height</span>: <span class="number">200px</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">font-weight</span>: bold;</span><br><span class="line"></span><br><span class="line"><span class="attribute">font-size</span>: <span class="number">24px</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">background</span>: burlywood;</span><br><span class="line"></span><br><span class="line"><span class="attribute">border-radius</span>: <span class="number">50%</span>;<span class="comment">//圆角百分比</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">html部分：</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">div</span> class=<span class="string">"box1"</span>&gt;这是一个圆&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" href="https://13202121.github.io/">Code Mover</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="/js/busuanzi.pure.mini.js"></script> -->
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        // (function() { // DON'T EDIT BELOW THIS LINE
+        //     var d = document, s = d.createElement('script');
+        //     s.src = 'https://airclouds-blog.disqus.com/embed.js';
+        //     s.setAttribute('data-timestamp', +new Date());
+        //     (d.head || d.body).appendChild(s);
+        // })();
+    </script>
+
+
+
+</html>
